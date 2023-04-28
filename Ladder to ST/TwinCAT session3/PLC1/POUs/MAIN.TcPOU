@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MAIN" Id="{66339b33-5525-4df3-9b4e-ac5b6239f1e4}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	xStart : BOOL := FALSE;
+	xEStop : BOOL := FALSE; 
+	xMotor : BOOL := FALSE;
+	xEnable : BOOL := FALSE;
+	XLocked : BOOL := FALSE;
+	xInTimer : BOOL:= FALSE;
+	fbTMR : TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+xEnable := (xStart OR xEnable) AND NOT xEStop AND NOT xLocked;
+
+
+IF xEStop THEN 
+	
+	xLocked := TRUE;
+	xInTimer := TRUE;
+	
+END_IF
+
+fbTMR(IN := xInTimer,
+	PT := T#10S );
+	
+
+IF fbTMR.Q THEN
+	
+	xLocked := FALSE;
+	xInTimer := FALSE;
+
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="31" Count="1" />
+      <LineId Id="39" Count="9" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="55" Count="4" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

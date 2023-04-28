@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MAIN" Id="{b6cca45b-947a-4cbb-aeed-277012676873}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	xRunAuth : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF NOT xRunAuth THEN 
+
+	ADSLOGSTR(msgCtrlMask := ADSLOG_MSGTYPE_ERROR,
+		 	  msgFmtStr   := 'Sensor temp: %s',
+		  	  strArg	  := '30'); 
+
+	xRunAuth := TRUE;	
+	  
+END_IF		 
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="6" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

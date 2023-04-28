@@ -1,0 +1,83 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5b55da94-e016-42e9-bc8b-dc420396d16e}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>plc</Name>
+    <ProgramVersion>3.1.4023.0</ProgramVersion>
+    <Application>{2df98966-3e1f-49b3-9472-f576d949870a}</Application>
+    <TypeSystem>{266e6972-cebb-4aef-98c3-55afa62b4654}</TypeSystem>
+    <Implicit_Task_Info>{cd77acaa-e962-4b92-b626-011eb88a161c}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{92bd2f33-205f-4386-b855-208879f55f96}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{e4bc9d18-2159-4446-8fa9-72688c304560}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{348ecc6b-2218-409c-8ce6-fc9c1254d11d}</LibraryReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DUTs\E_EventType.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_Events.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\F_UpdateTimestamp.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DUTs" />
+    <Folder Include="GVLs" />
+    <Folder Include="VISUs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Utilities">
+      <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Utilities</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="plc.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+  <Data>
+    <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+  </Data>
+  <TypeList>
+    <Type n="Hashtable">System.Collections.Hashtable</Type>
+    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+    <Type n="String">System.String</Type>
+  </TypeList>
+</XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

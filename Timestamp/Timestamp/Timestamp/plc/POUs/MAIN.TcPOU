@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MAIN" Id="{13015835-c886-43a5-a180-937f16083639}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	stEventsMain : ST_Events;
+	xFlag :   BOOL := FALSE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT xFlag THEN
+		F_UpdateTimestamp (stEventsMain);
+		xFlag := TRUE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

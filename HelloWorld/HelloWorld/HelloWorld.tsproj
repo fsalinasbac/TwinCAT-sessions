@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.32">
+	<Project ProjectGUID="{F4FDFBC9-41F9-48E0-9E7C-4E8F400FD603}" Target64Bit="true" AutoPrioManagement="true" ShowHideConfigurations="#x106">
+		<System>
+			<Settings MaxCpus="4" NonWinCpus="1">
+				<Cpu CpuId="3"/>
+				<IoIdleTask Priority="4"/>
+			</Settings>
+			<Tasks>
+				<Task Id="3" Priority="6" CycleTime="100000" AmsPort="350" AdtTasks="true">
+					<Name>PlcTask</Name>
+				</Task>
+			</Tasks>
+		</System>
+		<Plc>
+			<Project GUID="{3C8515FB-19C5-4493-8273-8A8F9900ACC5}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2">
+					<Name>PLC1 Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Contexts>
+						<Context>
+							<Id>1</Id>
+							<Name>Default</Name>
+						</Context>
+					</Contexts>
+				</Instance>
+			</Project>
+		</Plc>
+	</Project>
+</TcSmProject>
