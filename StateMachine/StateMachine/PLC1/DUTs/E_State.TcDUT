@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="E_State" Id="{ac58525f-b82d-40fd-9837-0631dd021b63}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_State :
+(
+	Emergency := 0,
+	Off := 10,
+	Manual := 20,
+	Auto := 30,
+	CoilClean := 40
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

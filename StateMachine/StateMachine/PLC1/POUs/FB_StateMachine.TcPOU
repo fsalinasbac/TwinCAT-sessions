@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_StateMachine" Id="{8b9038d6-4ca9-4706-96f5-cc1139cf3fcb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_StateMachine
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	eState : E_State;
+	xManualEnable : BOOL;
+	xUnitEnable : BOOL;
+	xCoilClean : BOOL;
+	xEmergencyFlag : BOOL;
+	xCoilCleanFinished : BOOL;
+	xFirstCycle: BOOL := TRUE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF xFirstCycle THEN 
+	eState := E_State.Off;
+END_IF
+	
+
+
+CASE eState OF
+	
+	E_State.Off :
+		IF xManualEnable THEN eState := E_State.Manual;
+		ELSIF xUnitEnable THEN eState := E_State.Auto;
+		END_IF
+	
+	E_State.Auto :
+	 	IF xEmergencyFlag THEN eState := E_State.Emergency;
+		ELSIF xManualEnable THEN eState := E_State.Manual;
+		ELSIF NOT xUnitEnable THEN eState := E_State.Off;
+		END_IF 
+	
+	E_State.Manual :
+		IF NOT xManualEnable THEN eState := E_State.Off;
+		ELSIF xCoilClean THEN eState := E_State.CoilClean;					
+		END_IF
+	
+	E_State.CoilClean :
+		IF xEmergencyFlag THEN eState := E_State.Emergency;
+		ELSIF xCoilCleanFinished THEN eState := E_State.Manual;
+									  xCoilClean := FALSE;
+									  xCoilCleanFinished := FALSE;								
+		END_IF
+	
+	E_State.Emergency :
+		IF NOT xEmergencyFlag THEN eState := E_State.Off;
+		END_IF
+
+END_CASE
+
+xFirstCycle := FALSE;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_StateMachine">
+      <LineId Id="67" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="64" Count="2" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="43" Count="1" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="45" Count="3" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="50" Count="1" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="40" Count="1" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
